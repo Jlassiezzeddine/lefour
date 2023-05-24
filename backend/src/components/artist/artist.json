@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_artist_artists",
+  "info": {
+    "displayName": "Artist"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "instagramUrl": {
+      "type": "string"
+    }
+  }
+}

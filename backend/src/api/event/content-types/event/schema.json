@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "venue": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "pricing": {
+      "displayName": "Test",
+      "type": "component",
+      "repeatable": true,
+      "component": "test.test"
+    },
+    "performers": {
+      "displayName": "Performers",
+      "type": "component",
+      "repeatable": true,
+      "component": "performer.performers"
+    },
+    "ticketsExternal": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
+    }
+  }
+}

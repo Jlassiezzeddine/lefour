@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "releases",
+  "info": {
+    "singularName": "release",
+    "pluralName": "releases",
+    "displayName": "Release",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "album": {
+      "type": "string"
+    },
+    "artist": {
+      "displayName": "Artist",
+      "type": "component",
+      "repeatable": false,
+      "component": "artist.artist",
+      "required": true
+    },
+    "channel": {
+      "displayName": "Channels",
+      "type": "component",
+      "repeatable": true,
+      "component": "channels.channels"
+    },
+    "label": {
+      "type": "string"
+    },
+    "genre": {
+      "type": "string"
+    },
+    "releaseDate": {
+      "displayName": "Release date",
+      "type": "component",
+      "repeatable": false,
+      "component": "release-date.release-date",
+      "required": true
+    }
+  }
+}
