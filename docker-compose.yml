@@ -34,6 +34,8 @@ services:
       - /app/node_modules
       - /app/.next
       - ./logs/frontend:/root/.npm/_logs
+    ports:
+      - 3000:3000
     env_file:
       - ./.env
 
@@ -45,7 +47,8 @@ services:
       args:
         - NODE_ENV=${ENVIRONMENT}
     restart: unless-stopped
-    env_file: .env
+    env_file: 
+        - ./.env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: postgres
@@ -56,6 +59,10 @@ services:
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       NODE_ENV: ${ENVIRONMENT}
+      STRAPI_HOST: ${STRAPI_HOST}
+      STRAPI_PORT: ${STRAPI_PORT}
+    ports:
+      - 1337:1337
     volumes:
       - ./backend:/app
       - /app/node_modules
