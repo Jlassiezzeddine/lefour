@@ -75,11 +75,12 @@ services:
   postgres:
     image: postgres:12.0-alpine
     container_name: ${PROJECT_SLUG}_postgres
+    hostname: postgres
     platform: linux/amd64
     restart: unless-stopped
     env_file: .env
     ports:
-      - "${DATABASE_PORT}:${DATABASE_PORT}"
+      - ${DATABASE_PORT}:${DATABASE_PORT}
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
@@ -94,7 +95,7 @@ services:
     restart: always
     env_file: .env
     ports:
-      - "5050:80"
+      - 5050:80
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
