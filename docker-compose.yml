@@ -35,7 +35,7 @@ services:
       - /app/.next
       - ./logs/frontend:/root/.npm/_logs
     ports:
-      - 3000:3000
+      - 3005:3005
     env_file:
       - ./.env
 
