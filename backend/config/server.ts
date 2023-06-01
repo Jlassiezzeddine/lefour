@@ -7,5 +7,5 @@ export default ({ env }) => ({
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
-  url: `http://${env('PUBLIC_URL', '127.0.0.1')}/strapi/`,
+  url: `http://${env('PUBLIC_URL', '51.222.137.40')}/strapi/`,
 });
