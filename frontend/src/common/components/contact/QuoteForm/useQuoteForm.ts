@@ -20,39 +20,40 @@ export default function useQuoteForm(initialState: IQuoteForm) {
     [formState]
   );
   const toggleChildService = useCallback(
-    (
+    async (
       parentSlug: string,
       event: ChangeEvent<HTMLInputElement>,
       checked: boolean
     ) => {
-      const childServiceSlug = event.currentTarget.name;
+      const childslug = event.currentTarget.name;
       if (!checked) {
-        console.log('Uncheck', childServiceSlug);
+        console.log('Uncheck', childslug);
         const newArray: IService[] = formState.services.map((el) =>
-          el.serviceSlug === parentSlug
+          el.slug === parentSlug
             ? {
-                serviceName: el.serviceName,
-                serviceSlug: el.serviceSlug,
-                serviceDescription: el.serviceDescription,
+                name: el.name,
+                slug: el.slug,
+                description: el.description,
                 pricing: el.pricing,
                 children: el.children?.filter(
-                  (child) => child.serviceSlug !== childServiceSlug
+                  (child) => child.slug !== childslug
                 ),
               }
             : el
         );
         handleChange('services', newArray);
       } else {
-        console.log('check', childServiceSlug);
-        const serviceToAdd: IService = services
-          .find((el) => el.serviceSlug === parentSlug)
-          ?.children?.find((el) => el.serviceSlug === childServiceSlug)!;
+        console.log('check', childslug);
+        const servicesResponse = await services;
+        const serviceToAdd: IService = servicesResponse
+          .find((el: IService) => el.slug === parentSlug)
+          ?.children?.find((el) => el.slug === childslug)!;
         const newArray: IService[] = formState.services.map((el) =>
-          el.serviceSlug === parentSlug
+          el.slug === parentSlug
             ? {
-                serviceName: el.serviceName,
-                serviceSlug: el.serviceSlug,
-                serviceDescription: el.serviceDescription,
+                name: el.name,
+                slug: el.slug,
+                description: el.description,
                 pricing: el.pricing,
                 children: [...el.children!, serviceToAdd],
               }
