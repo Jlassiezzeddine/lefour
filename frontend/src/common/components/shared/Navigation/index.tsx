@@ -14,7 +14,6 @@ import { BurgerButton } from './BurgerButton';
 import FancyMegaMenu from './FancyMegaMenu';
 import { Logo } from './Logo';
 import MegaMenu from './MegaMenu';
-import RadioButton from './RadioButton';
 import ResponsiveNavigation from './ResponsiveNavigation';
 
 export const navbarHeight = '96px';
@@ -55,7 +54,9 @@ const Navigation = () => {
   const { navigation } = useLinksMap();
   const showResponsiveNavigationItems =
     router.asPath === '/' && !isScrolledDown && !isMenuOpen;
-  useEffect(() => { console.log('navigation', navigation)}, [navigation])
+  useEffect(() => {
+    console.log('navigation', navigation);
+  }, [navigation]);
   const renderNavigation = (navigation: ILink[]) => {
     if (showResponsiveNavigationItems) {
       return navigation.map((item) =>
@@ -144,7 +145,7 @@ const Navigation = () => {
             </Stack>
           </Box>
 
-          <RadioButton dark={showResponsiveNavigationItems} />
+          {/* <RadioButton dark={showResponsiveNavigationItems} /> */}
         </Box>
       </Container>
       <ResponsiveNavigation show={isMenuOpen} />
