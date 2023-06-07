@@ -11,5 +11,5 @@ export interface IEvent {
   endDate: Date;
   performers: IPerformer[];
   pricing: IPrice[];
-  ticketsExternal: string  
+  ticketsExternal: string;
 }

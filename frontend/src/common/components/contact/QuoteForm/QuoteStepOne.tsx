@@ -17,9 +17,7 @@ export default function QuoteStepOne({ formState, handleChange }: IProps) {
   const handleSelect = (service: IService) => {
     let newSelected: IService[];
     if (selected.some((el) => el.slug === service.slug)) {
-      newSelected = selected.filter(
-        (el) => el.slug !== service.slug
-      );
+      newSelected = selected.filter((el) => el.slug !== service.slug);
     } else {
       newSelected = [...selected, service];
     }

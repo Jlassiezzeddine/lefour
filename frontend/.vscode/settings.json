@@ -5,9 +5,5 @@
     "source.fixAll": true,
     "source.organizeImports": true
   },
-  "cSpell.words": [
-    "Ableton",
-    "lefourstudio",
-    "scrollrender"
-  ]
+  "cSpell.words": ["Ableton", "lefourstudio", "scrollrender"]
 }

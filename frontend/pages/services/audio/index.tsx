@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Audio = ({ service }: IProps) => {
-    const {name, description} = service
+  const { name, description } = service;
   return (
     <>
       <SeoHeader />

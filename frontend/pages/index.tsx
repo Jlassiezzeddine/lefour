@@ -5,9 +5,7 @@ import Layout from '@components/Layout';
 import ServicesSection from '@components/ServicesSection';
 import Spacer from '@components/shared/Atoms/Spacer';
 import SeoHeader from '@components/shared/SeoHeader';
-import type {
-  NextPage,
-} from 'next';
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (

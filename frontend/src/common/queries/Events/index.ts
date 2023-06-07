@@ -11,7 +11,7 @@ export const getEvents: (id?: string) => Promise<IEvent[]> = async (
   return data.data.map(
     (el: {
       id: string;
-      
+
       attributes: {
         label: string;
         slug: string;
@@ -28,7 +28,7 @@ export const getEvents: (id?: string) => Promise<IEvent[]> = async (
           value: number;
           currency: string;
         }[];
-        ticketsExternal: string
+        ticketsExternal: string;
       };
     }) => ({
       id: el.id,
@@ -40,7 +40,7 @@ export const getEvents: (id?: string) => Promise<IEvent[]> = async (
       endDate: el.attributes.endDate,
       performers: el.attributes.performers,
       pricing: el.attributes.pricing,
-      ticketsExternal: el.attributes.ticketsExternal
+      ticketsExternal: el.attributes.ticketsExternal,
     })
   );
 };

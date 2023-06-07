@@ -15,7 +15,7 @@ interface IProps {
   disabled?: boolean;
   href?: string;
   dark?: boolean;
-  external?: boolean
+  external?: boolean;
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -104,19 +104,20 @@ export default function Button({
     ...getVariationStyle(),
   };
 
-  if(href) return (
-    <MUIButton
-      disabled={disabled}
-      LinkComponent={Link}
-      href={href}
-      target={external ? "_blank" : undefined}
-      sx={buttonStyle}
-      disableRipple={variant === 'tertiary'}
-    >
-      {label}
-      {variant === 'tertiary' && <ArrowRightAltIcon />}
-    </MUIButton>
-  )
+  if (href)
+    return (
+      <MUIButton
+        disabled={disabled}
+        LinkComponent={Link}
+        href={href}
+        target={external ? '_blank' : undefined}
+        sx={buttonStyle}
+        disableRipple={variant === 'tertiary'}
+      >
+        {label}
+        {variant === 'tertiary' && <ArrowRightAltIcon />}
+      </MUIButton>
+    );
   return (
     <ButtonBase
       disabled={disabled}

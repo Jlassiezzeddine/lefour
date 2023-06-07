@@ -5,9 +5,9 @@ import { IService } from 'src/common/types/Service';
 export const getServices: (id?: string) => Promise<IService[]> = async (
   id?: string
 ) => {
-  const { data } = await axios.get(
-    '/strapi/api/service-categories/' + (id || '') + '?populate=*'
-  ).then(res => res.data);
+  const { data } = await axios
+    .get('/strapi/api/service-categories/' + (id || '') + '?populate=*')
+    .then((res) => res.data);
   return data?.map(
     (e: {
       id: string;

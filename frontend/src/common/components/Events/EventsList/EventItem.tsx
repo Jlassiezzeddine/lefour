@@ -81,7 +81,7 @@ export function EventItem({ event, index }: IProps) {
               >
                 {label}
               </Typography>
-              <Typography color={colors.grey} >
+              <Typography color={colors.grey}>
                 {getDates(startDate, endDate)}
               </Typography>
             </Stack>
@@ -97,17 +97,14 @@ export function EventItem({ event, index }: IProps) {
           <Typography color={colors.grey} sx={{ ...shortText('70ch') }}>
             {description}
           </Typography>
-          <Typography
-            color={colors.grey}
-            sx={{ ...shortText('70ch') }}
-          >
+          <Typography color={colors.grey} sx={{ ...shortText('70ch') }}>
             {`Line up: ${getPerformers(performers)}`}
           </Typography>
         </Grid>
         <Grid item xs={12} md={2} display="flex" justifyContent="center">
           <Stack sx={{ display: { xs: 'none', md: 'block' } }}>
             <Typography color={colors.grey}>Starting at</Typography>
-            <Typography color={colors.dark} >
+            <Typography color={colors.dark}>
               {getStartingPrice(pricing)}
             </Typography>
           </Stack>
