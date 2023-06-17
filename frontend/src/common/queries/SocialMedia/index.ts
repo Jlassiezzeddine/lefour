@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { ISocialMedia } from 'src/common/types/SocialMedia';
-import { IStrapiResponse } from 'src/common/types/StrapiResponse';
+import { IStrapiResponseSingle } from 'src/common/types/StrapiResponseSingle';
 
 // eslint-disable-next-line no-unused-vars
-export const getSocialMedia: () => Promise<IStrapiResponse<ISocialMedia>> = async () => {
-  const { data } = await axios.get('/strapi/api/social-media?populate=*');
+export const getSocialMedia: () => Promise<IStrapiResponseSingle<ISocialMedia>> = async () => {
+  const { data } = await axios.get('/strapi/api/social-media?populate=items');
   return data
 };
