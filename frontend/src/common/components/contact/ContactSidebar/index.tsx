@@ -1,4 +1,3 @@
-import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
@@ -8,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useWindowSize } from 'usehooks-ts';
 import ContactSidebarItem, { ISidebarItem } from './ContactSidebarItem';
 import { useContact } from 'src/common/hooks/api/contact';
+import { useTheme } from '@mui/material/styles';
 
 export default function ContactSidebar() {
   const { query } = useRouter();
