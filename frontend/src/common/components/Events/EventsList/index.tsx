@@ -1,17 +1,24 @@
 import Section from '@components/shared/Section';
 import { useEvent } from 'src/common/hooks/api/event';
 import { EventItem } from './EventItem';
+import Spacer from '@components/shared/Atoms/Spacer';
 export default function EventsList() {
-  const { data, isLoading } = useEvent();
-  if (isLoading) return <div>loading ...</div>;
+  const { data } = useEvent();
   return (
-    <Section title="Next Events">
-      <>
-        {data &&
-          data.map((event, index) => (
-            <EventItem key={event.id} event={event} index={index} />
-          ))}
-      </>
-    </Section>
+    <>
+      {data && data.length > 0 && (
+        <>
+          <Spacer size={16} />
+          <Section title="Upcoming Events">
+            <>
+              {data.map((event, index) => (
+                <EventItem key={event.id} event={event} index={index} />
+              ))}
+            </>
+          </Section>
+          <Spacer size={16} />
+        </>
+      )}
+    </>
   );
 }

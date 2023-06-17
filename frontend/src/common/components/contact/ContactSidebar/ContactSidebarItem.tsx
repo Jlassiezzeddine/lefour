@@ -6,23 +6,23 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { SxProps, Theme, lighten } from '@mui/material/styles';
-import { getContactInfo } from 'src/common/queries/Globals';
 import { ContactView } from '..';
 import { colors } from '../../../styles/colors';
 import Link from '../../shared/Atoms/Link';
 import Spacer from '../../shared/Atoms/Spacer';
+import { useContact } from 'src/common/hooks/api/contact';
 export interface ISidebarItem {
   slug: ContactView | 'phone';
   title: string;
   subtitle?: string;
-  content: string;
+  content?: string;
 }
 interface IProps {
   isActive: boolean;
   item: ISidebarItem;
 }
 export default function ContactSidebarItem({ isActive, item }: IProps) {
-  const { phone } = getContactInfo();
+  const { phone } = useContact();
   const { slug, title, subtitle, content } = item;
   const style: SxProps<Theme> = {
     display: 'block',

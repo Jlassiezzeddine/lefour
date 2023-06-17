@@ -1,5 +1,11 @@
 export type SocialMediaType = 'youtube' | 'instagram';
 export interface ISocialMedia {
-  name: SocialMediaType;
-  link: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date;
+  items: {
+    id: number;
+    name: SocialMediaType;
+    link: string;
+  }[];
 }

@@ -6,11 +6,16 @@
   },
   "options": {},
   "attributes": {
-    "name": {
-      "type": "string"
-    },
     "link": {
       "type": "string"
+    },
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "youtube",
+        "instagram"
+      ],
+      "required": true
     }
   }
 }

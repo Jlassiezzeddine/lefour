@@ -6,12 +6,12 @@ import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
 import { IFaq } from 'src/common/types/FAQ';
 interface IProps {
-  faqItems: IFaq[];
+  faqItems?: IFaq[];
 }
 export default function FaqAccordion({ faqItems }: IProps) {
   return (
     <>
-      {faqItems.map((item) => (
+      {faqItems?.map((item) => (
         <MuiAccordion
           key={item.question}
           sx={{

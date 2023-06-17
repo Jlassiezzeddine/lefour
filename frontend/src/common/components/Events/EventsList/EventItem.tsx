@@ -64,7 +64,6 @@ export function EventItem({ event, index }: IProps) {
   };
   const getStartingPrice = (pricing: IPrice[]) => {
     const startingPrice = pricing.sort((a, b) => a.value - b.value)[0];
-    console.log('startingPrice', startingPrice);
     return `${startingPrice?.value} ${startingPrice?.currency}`;
   };
 

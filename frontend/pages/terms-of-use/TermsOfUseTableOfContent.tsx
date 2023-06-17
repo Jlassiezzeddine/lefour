@@ -4,10 +4,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { getTermsOfUse } from 'src/common/queries/TermsOfUse';
+import { useTermsOfUse } from 'src/common/hooks/api/termsOfUse';
 
 export default function TermsOfUseTableOfContent() {
-  const termsOfUse = getTermsOfUse();
+  const termsOfUse = useTermsOfUse();
   return (
     <List
       dense
@@ -26,7 +26,7 @@ export default function TermsOfUseTableOfContent() {
         Table Of Contents
       </Typography>
       <Spacer size={2} />
-      {termsOfUse.map((item, index) => (
+      {termsOfUse?.map((item, index) => (
         <ListItem key={item.slug}>
           <Link
             label={item.slug}

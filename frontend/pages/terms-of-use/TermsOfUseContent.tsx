@@ -2,10 +2,10 @@ import Spacer from '@components/shared/Atoms/Spacer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { getTermsOfUse } from 'src/common/queries/TermsOfUse';
+import { useTermsOfUse } from 'src/common/hooks/api/termsOfUse';
 
 export default function TermsOfUseContent() {
-  const termsOfUse = getTermsOfUse();
+  const termsOfUse = useTermsOfUse();
   return (
     <Stack spacing={4}>
       <Typography
@@ -21,7 +21,7 @@ export default function TermsOfUseContent() {
         conditions. If you do not agree with any of these terms, please do not
         access our website or use our services.
       </Typography>
-      {termsOfUse.map((item, index) => (
+      {termsOfUse?.map((item, index) => (
         <Stack key={item.slug} id={item.slug}>
           <Typography fontSize={18} fontWeight={700} lineHeight={1}>
             {index + 1}

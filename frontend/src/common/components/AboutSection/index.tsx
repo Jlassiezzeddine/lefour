@@ -1,18 +1,52 @@
-import Button from '@components/shared/Atoms/Button';
+import Image from 'next/image';
+import Link from '@components/shared/Atoms/Link';
 import Spacer from '@components/shared/Atoms/Spacer';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { bleedingBackground } from '@styles/bleedingBackground';
 import { colors } from '@styles/colors';
 import Marquee from 'react-fast-marquee';
+import { useAbout } from 'src/common/hooks/api/about';
 import useLinksMap from 'src/common/hooks/useLinks';
+import Box from '@mui/material/Box';
 
 export default function AboutSection() {
   const { navigation } = useLinksMap();
+  const about = useAbout();
+
+  if (!about) return null;
   return (
     <>
-      <Container>
+      <Spacer size={6} />
+      <Marquee gradient={false} speed={60} style={{ overflowY: 'hidden' }}>
+        {navigation
+          .find((el) => el.children)
+          ?.children?.map((item) =>
+            item.children?.map((service) => (
+              <Link key={service.slug} path={service.path} label={''}>
+                <Typography
+                  key={service.slug}
+                  fontSize={56}
+                  fontWeight={900}
+                  lineHeight={1}
+                  paddingX={4}
+                  textTransform="uppercase"
+                  sx={{
+                    WebkitTextFillColor: 'transparent',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextStroke: `2px ${colors.dark}`,
+                  }}
+                >
+                  {service.label}
+                </Typography>
+              </Link>
+            ))
+          )}
+      </Marquee>
+      <Spacer size={6} />
+      <Container style={{ ...bleedingBackground(colors.light) }}>
         <Grid container color={colors.dark} spacing={{ xs: 6, md: 0 }}>
           <Grid item xs={12} md={10} order={{ xs: 2, md: 1 }}>
             <Stack
@@ -26,23 +60,11 @@ export default function AboutSection() {
               alignItems="start"
               height="100%"
             >
-              <Typography fontWeight={700}>
-                Welcome to Le Four Studio, here passion and expertise come
-                together to create unforgettable audio experiences.
-              </Typography>
+              <Typography fontWeight={700}>{about.title}</Typography>
               <Spacer size={2} />
-              <Typography>
-                Our devoted music lovers dedicated their hearts and souls to
-                each project, they attempted to create a high-quality recording
-                that was specific to your music. With a strong motivation and
-                dedication, we endeavor to maintain pace with industry trends
-                and produce exceptional results. At Le Four Studio, we are more
-                than just a recording studio - we are a community of musicians
-                who enjoy music. Contact us today to learn more about how we can
-                assist you in bringing music to life.
-              </Typography>
-              <Spacer size={4} />
-              <Button variant="tertiary" label={'Learn More'} />
+              <Typography>{about.description}</Typography>
+              {/* <Spacer size={4} />
+              <Button variant="tertiary" label={'Learn More'} href='/about' /> */}
             </Stack>
           </Grid>
           <Grid item xs={12} md={2}>
@@ -51,7 +73,6 @@ export default function AboutSection() {
               sx={{
                 webkitBackdropFilter: 'blur(30px)',
                 backdropFilter: 'blur(30px)',
-                borderRadius: '8px 0 0 8px',
                 padding: { xs: 0, md: '40px 32px 40px 0' },
                 border: { xs: 'none', md: `1px solid ${colors.lightGrey}` },
                 borderLeft: 'none !important',
@@ -68,36 +89,32 @@ export default function AboutSection() {
                 textTransform="uppercase"
                 maxWidth="12ch"
               >
-                We love what we do
+                {about.slogan}
               </Typography>
             </Stack>
           </Grid>
         </Grid>
+        {about.media && (
+          <Box
+            sx={{
+              width: '100%',
+              height: 'fit-content',
+              minHeight: '420px',
+              position: 'relative',
+            }}
+          >
+            <Image
+              src={about.media?.url}
+              alt={about.media?.alt}
+              quality={100}
+              layout="fill"
+              objectFit="cover"
+              style={{ zIndex: -2 }}
+            />
+          </Box>
+        )}
+        <Spacer size={16} />
       </Container>
-      <Spacer size={16} />
-      <Marquee gradient={false} speed={120} style={{ overflowY: 'hidden' }}>
-        {navigation
-          .find((el) => el.children)
-          ?.children?.map((item) =>
-            item.children?.map((service) => (
-              <Typography
-                key={service.slug}
-                fontSize={56}
-                fontWeight={900}
-                lineHeight={1}
-                paddingX={4}
-                textTransform="uppercase"
-                sx={{
-                  WebkitTextFillColor: 'transparent',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextStroke: `2px ${colors.dark}`,
-                }}
-              >
-                {service.label}
-              </Typography>
-            ))
-          )}
-      </Marquee>
     </>
   );
 }

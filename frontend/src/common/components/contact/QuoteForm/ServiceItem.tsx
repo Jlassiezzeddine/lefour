@@ -6,10 +6,11 @@ import { IService } from 'src/common/types/Service';
 import shortText from 'src/common/utils/shortText';
 import { colors } from '../../../styles/colors';
 import { renderServiceIcon } from '../../shared/Molecules/ServiceCard';
+import { IServiceCategories } from 'src/common/types/ServiceCategories';
 
 interface IProps {
-  service: IService;
-  selected: IService[];
+  service: IServiceCategories;
+  selected: IServiceCategories[];
   // eslint-disable-next-line no-unused-vars
   handleSelect: (service: IService) => void;
 }
@@ -18,7 +19,7 @@ export default function ServiceItem({
   selected,
   handleSelect,
 }: IProps) {
-  const { name, slug, children } = service;
+  const { name, slug, services } = service;
   const isActive = selected.some((el) => el.slug === slug);
   return (
     <Stack
@@ -56,8 +57,8 @@ export default function ServiceItem({
             color={colors.grey}
             sx={{ display: { xs: 'none', md: 'block' }, ...shortText('40ch') }}
           >
-            {children
-              ? children.map((el) => el.name).join(', ')
+            {services
+              ? services.map((el) => el.name).join(', ')
               : 'We are here to help! '}
           </Typography>
         </Stack>

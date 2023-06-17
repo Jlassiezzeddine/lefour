@@ -10,8 +10,8 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { getFrequentlyAskedQuestions } from 'src/common/queries/FAQ';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
+import { useFrequentlyAskedQuestions } from 'src/common/hooks/api/faq';
 import { FAQContext } from 'src/common/types/FAQ';
 interface IProps {
   searchQuery: string;
@@ -34,8 +34,8 @@ export default function FaqHeader({
     else setSelectedCategory(context);
   };
 
-  const FaqList = getFrequentlyAskedQuestions();
-
+  const FaqList = useFrequentlyAskedQuestions();
+ 
   const getIcons = (context: FAQContext) => {
     switch (true) {
       case context === 'generic':
@@ -77,7 +77,7 @@ export default function FaqHeader({
       </Typography>
       <Spacer size={6} />
       <Grid container spacing={2}>
-        {FaqList.map((item) => item.context)
+        {FaqList?.map((item) => item.context)
           .filter((x, i, a) => a.indexOf(x) === i)
           .map((context) => (
             <Grid item key={context} xs={12} md={3}>

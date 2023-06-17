@@ -1,10 +1,8 @@
 import Spacer from '@components/shared/Atoms/Spacer';
-import { navbarHeight } from '@components/shared/Navigation';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/router';
-import { useWindowSize } from 'usehooks-ts';
 import { colors } from '../../styles/colors';
 import ContactForm from './ContactForm';
 import ContactSidebar from './ContactSidebar';
@@ -13,7 +11,6 @@ import QuoteForm from './QuoteForm';
 export type ContactView = 'quote' | 'contact' | 'map' | 'phone';
 const ContactTemplate = () => {
   const router = useRouter();
-  const { height } = useWindowSize();
   const renderView = () => {
     switch (true) {
       case (router.query.view as ContactView) === 'contact':
@@ -29,7 +26,7 @@ const ContactTemplate = () => {
 
   return (
     <Container
-      sx={{ height: { xs: `calc(${height}px - ${navbarHeight})`, md: '100%' } }}
+      sx={{ height: '100%' }}
     >
       <Grid
         container

@@ -54,6 +54,7 @@ export default function FancyMegaMenu({ link }: IProps) {
       setSubMenuItems(link.children?.[0]);
   }, [link]);
 
+
   return (
     <Box sx={style} onMouseEnter={handleHover}>
       <Stack

@@ -5,13 +5,13 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
 import { useRouter } from 'next/router';
-import { getContactInfo } from 'src/common/queries/Globals';
 import { useWindowSize } from 'usehooks-ts';
 import ContactSidebarItem, { ISidebarItem } from './ContactSidebarItem';
+import { useContact } from 'src/common/hooks/api/contact';
 
 export default function ContactSidebar() {
   const { query } = useRouter();
-  const { email, address, phone } = getContactInfo();
+  const { email, address, phone } = useContact();
   const { width, height } = useWindowSize();
   const theme = useTheme();
   const ITEMS_MAP: ISidebarItem[] = [
@@ -41,6 +41,7 @@ export default function ContactSidebar() {
       content: phone,
     },
   ];
+
   return (
     <Stack
       spacing={2}

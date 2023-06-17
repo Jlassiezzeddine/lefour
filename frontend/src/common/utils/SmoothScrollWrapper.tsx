@@ -67,7 +67,6 @@ export default function SmoothScrollWrapper({ children }: IProps) {
   };
   useEffect(() => {
     smoothScroll(window, 120, 30);
-    console.log(window);
   }, []);
   return <Box>{children}</Box>;
 }

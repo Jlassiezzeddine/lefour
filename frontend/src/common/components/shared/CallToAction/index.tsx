@@ -106,7 +106,8 @@ const CallToAction = () => {
         return 'getInTouch';
       // case router.asPath === '/contact':
       //   return 'pricing';
-      case router.asPath === '/pricing':
+      case router.asPath.startsWith('/services') ||
+        router.asPath.startsWith('/releases'):
         return 'getInTouch';
       case router.asPath === '/faq':
         return 'getQuote';

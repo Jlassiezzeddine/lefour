@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "singularName": "about",
+    "pluralName": "abouts",
+    "displayName": "About",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Welcome to Le Four Studio, here passion and expertise come together to create unforgettable audio experiences."
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "default": "Our devoted music lovers dedicated their hearts and souls to each project, they attempted to create a high-quality recording that was specific to your music. With a strong motivation and dedication, we endeavor to maintain pace with industry trends and produce exceptional results. At Le Four Studio, we are more than just a recording studio - we are a community of musicians who enjoy music. Contact us today to learn more about how we can assist you in bringing music to life."
+    },
+    "slogan": {
+      "type": "string",
+      "default": "WE LOVE WHAT WE DO"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

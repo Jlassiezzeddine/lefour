@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { ILink } from '../types/Link';
-import { IService } from '../types/Service';
 import { useService } from './api/service';
+import { IServiceCategories } from '../types/ServiceCategories';
+import { IMedia } from '../types/Media';
 
 export default function useLinksMap(): {
   navigation: ILink[];
@@ -9,26 +9,26 @@ export default function useLinksMap(): {
 } {
   const services = useService();
   // eslint-disable-next-line no-unused-vars
-  const getServicesRouting: (services: IService[]) => ILink[] = (
-    services: IService[]
+  const getServicesRouting: (services: IServiceCategories[]) => ILink[] = (
+    services: IServiceCategories[]
   ) =>
     services.map((item) => ({
       label: item.name,
       slug: item.slug,
       path: `/services/${item.slug}`,
       description: item.description,
-      children: item.children?.map((child) => ({
+      image:item.image as IMedia,
+      children: item.services?.map((child) => ({
         label: child.name,
         slug: child.slug,
         path: `/services/${item.slug}/${child.slug}`,
         icon: child.slug,
         description: child.description,
+        image:child.image as IMedia,
       })),
     }));
   // Export the getServerSideProps function with GetServerSideProps type
-  useEffect(() => {
-    console.log('services', services);
-  }, [services]);
+
   return {
     navigation: [
       {
@@ -36,17 +36,23 @@ export default function useLinksMap(): {
         slug: 'overview',
         path: '/',
       },
+      // {
+      //   label: 'About',
+      //   slug: 'about',
+      //   path: '/about',
+      // },
       {
         label: 'Services',
         slug: 'services',
         path: '/services',
-        children: services.data ? getServicesRouting(services.data) : [],
+        children: services ? getServicesRouting(services) : [],
       },
-      // {
-      //   label: 'Records',
-      //   slug: 'records',
-      //   path: '/records',
-      // },
+      
+      {
+        label: 'Releases',
+        slug: 'releases',
+        path: '/releases',
+      },
       // {
       //   label: "Reviews",
       //   path: "/reviews",

@@ -27,7 +27,7 @@ export default function QuoteStepOne({ formState, handleChange }: IProps) {
   return (
     <Stack width="100%" height="100%" maxWidth="500px" marginX="auto">
       <Grid container spacing={2}>
-        {services?.data?.map((service) => (
+        {services?.map((service) => (
           <Grid item xs={12} key={service.slug}>
             <ServiceItem
               service={service}
@@ -42,6 +42,7 @@ export default function QuoteStepOne({ formState, handleChange }: IProps) {
               name: 'Something else',
               slug: 'other',
               description: "We're here to help.",
+              content: ''
             }}
             selected={selected}
             handleSelect={handleSelect}

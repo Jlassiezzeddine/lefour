@@ -3,18 +3,18 @@ import Stack from '@mui/material/Stack';
 import { SxProps, Theme } from '@mui/material/styles';
 import { colors } from '@styles/colors';
 import useLinksMap from 'src/common/hooks/useLinks';
-import { getSocialMedia } from 'src/common/queries/Globals';
 import { useWindowSize } from 'usehooks-ts';
 import Link from '../Atoms/Link';
 import SocialMedia from '../SocialMedia';
 import LinksMenu from './LinksMenu';
+import { useSocialMedia } from 'src/common/hooks/api/socialMedia';
 
 interface IProps {
   show: boolean;
 }
 const ResponsiveNavigation = ({ show }: IProps) => {
   const { navigation } = useLinksMap();
-  const socialMediaList = getSocialMedia();
+  const socialMediaList = useSocialMedia();
   const { height } = useWindowSize();
   const style: SxProps<Theme> = {
     backgroundColor: colors.light,
@@ -42,7 +42,7 @@ const ResponsiveNavigation = ({ show }: IProps) => {
             )}
           </Stack>
           <Stack direction="row" alignItems="start" spacing={2}>
-            {socialMediaList.map(
+            {socialMediaList?.map(
               ({ name, link }) =>
                 link && (
                   <SocialMedia

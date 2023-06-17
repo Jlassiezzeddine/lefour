@@ -4,9 +4,9 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { getSocialMedia } from 'src/common/queries/Globals';
+import { useSocialMedia } from 'src/common/hooks/api/socialMedia';
 const FooterBottom = () => {
-  const socialMediaList = getSocialMedia();
+  const socialMediaList = useSocialMedia();
   return (
     <>
       <Grid
@@ -23,7 +23,7 @@ const FooterBottom = () => {
         </Grid>
         <Grid item xs={0} md="auto"></Grid>
         <Grid item xs={12} md="auto">
-          <Stack direction="row" alignItems="center" spacing={2}>
+          {socialMediaList && <Stack direction="row" alignItems="center" spacing={2}>
             {socialMediaList.map(
               ({ name, link }) =>
                 link && (
@@ -35,7 +35,7 @@ const FooterBottom = () => {
                   />
                 )
             )}
-          </Stack>
+          </Stack>}
         </Grid>
       </Grid>
       <Spacer size={4} />

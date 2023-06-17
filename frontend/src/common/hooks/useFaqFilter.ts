@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import { useEffect, useState } from 'react';
-import { getFrequentlyAskedQuestions } from '../queries/FAQ';
 import { FAQContext, IFaq } from '../types/FAQ';
+import { useFrequentlyAskedQuestions } from './api/faq';
 interface IProps {
   searchQuery: string;
   selectedCategory: FAQContext | null;
@@ -10,8 +10,8 @@ export default function useFaqFilter({
   searchQuery,
   selectedCategory,
 }: IProps) {
-  const FaqList = getFrequentlyAskedQuestions();
-  const [faqItems, setFaqItems] = useState<IFaq[]>(FaqList);
+  const FaqList = useFrequentlyAskedQuestions();
+  const [faqItems, setFaqItems] = useState<IFaq[]>(FaqList || []);
 
   useEffect(() => {
     const options = {
@@ -31,7 +31,7 @@ export default function useFaqFilter({
       keys: ['question'],
     };
 
-    const handleFilter = () => {
+    const handleFilter = (FaqList: IFaq[]) => {
       let result: IFaq[] = FaqList;
       if (selectedCategory !== null) {
         result = FaqList.filter((e) => e.context === selectedCategory);
@@ -47,7 +47,7 @@ export default function useFaqFilter({
       }
       setFaqItems(result);
     };
-    handleFilter();
+    FaqList && handleFilter(FaqList);
   }, [FaqList, searchQuery, selectedCategory]);
   return {
     faqItems,

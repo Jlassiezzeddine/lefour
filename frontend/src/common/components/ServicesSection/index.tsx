@@ -8,24 +8,32 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { boxShadow } from '@styles/boxShadow';
 import { useRef } from 'react';
-import useFetchImage from 'src/common/hooks/useFetchImage';
 import useLinksMap from 'src/common/hooks/useLinks';
 import clampText from 'src/common/utils/clampText';
 import { colors } from '../../styles/colors';
-export default function ServicesSection() {
+import { bleedingBackground } from '@styles/bleedingBackground';
+
+interface IProps {
+  dark?: boolean
+}
+export default function ServicesSection({dark = false}: IProps) {
   const services = useLinksMap().navigation.find((el) => el.children)?.children;
   const boxRef = useRef<HTMLDivElement>(null);
 
-  const fetchImage = useFetchImage(
-    boxRef.current?.clientWidth,
-    boxRef.current?.clientHeight
-  );
   return (
     <Section>
-      <>
+      <Box sx={{  color: dark ? colors.light : colors.dark, ...bleedingBackground(dark ? colors.dark : colors.light) }}>
+        <Spacer size={16} />
+        <Box
+              sx={{
+                height: '2px',
+                width: '64px',
+                backgroundColor: colors.dark,
+                marginBottom: 2,
+              }}
+            />
         <Box
           sx={{
-            backgroundColor: colors.light,
             paddingBottom: 8,
           }}
         >
@@ -41,6 +49,7 @@ export default function ServicesSection() {
                 fontSize={40}
                 fontWeight={900}
                 lineHeight={1.1}
+                color={dark ? colors.light : colors.dark}
               >
                 {`What Services We're Offering`}
               </Typography>
@@ -167,9 +176,7 @@ export default function ServicesSection() {
                     left: 0,
                     height: '100%',
                     width: '100%',
-                    background: `url(${fetchImage(
-                      `service_${item.slug}.webp`
-                    )})`,
+                    background: `url(${item.image?.url})`,
                     backgroundSize: 'cover',
                     backgroundPosition: '50% 50%',
                     backgroundRepeat: 'no-repeat',
@@ -186,8 +193,8 @@ export default function ServicesSection() {
                   <Typography
                     className="heading"
                     component="h4"
-                    fontSize={{ xs: 32, md: 56 }}
-                    fontWeight={900}
+                    fontSize={{ xs: 32}}
+                    fontWeight={700}
                     lineHeight={1.2}
                   >
                     {item.label}
@@ -210,7 +217,8 @@ export default function ServicesSection() {
             </Box>
           ))}
         </Stack>
-      </>
+        <Spacer size={16} />
+      </Box>
     </Section>
   );
 }

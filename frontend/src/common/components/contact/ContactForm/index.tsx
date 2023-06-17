@@ -6,24 +6,30 @@ import PhoneInput from '../../shared/Atoms/Form/PhoneInput';
 import TextInput from '../../shared/Atoms/Form/TextInput';
 import Spacer from '../../shared/Atoms/Spacer';
 import useContactForm from './useContactForm';
-export interface IContactForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  message: string;
-}
-const initialState: IContactForm = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  message: '',
-};
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { colors } from '@styles/colors';
 const ContactForm = () => {
-  const { formState, handleChange, handleSubmit } =
-    useContactForm<IContactForm>(initialState);
-
+  const { formState, handleChange, handleSubmit, isSuccess, isLoading, isError } =
+    useContactForm();
+  if (isError)
+    return (
+      <Stack justifyContent="center" alignItems="center" spacing={4}>
+        <ReportProblemIcon sx={{color: colors.error, fontSize: 64}} />
+        <Typography fontWeight={700}>
+          Oops! Something went wrong, please try again later
+        </Typography>
+      </Stack>
+    );
+  if (isSuccess)
+    return (
+      <Stack justifyContent="center" alignItems="center" spacing={4}>
+        <CheckCircleIcon sx={{color: colors.success, fontSize: 64}}  />
+        <Typography fontWeight={700}>
+          Thanks for reaching out, We will get back to you soon
+        </Typography>
+      </Stack>
+    );
   return (
     <Stack
       width="100%"
@@ -89,7 +95,7 @@ const ContactForm = () => {
         </Stack>
       </Box>
 
-      <Button label={'Send'} onClick={handleSubmit} />
+      <Button loading={isLoading} label={'Send'} onClick={handleSubmit} />
     </Stack>
   );
 };

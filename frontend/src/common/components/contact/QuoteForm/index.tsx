@@ -11,7 +11,9 @@ import QuoteStepThree from './QuoteStepThree';
 import QuoteStepTwo from './QuoteStepTwo';
 import Stepper from './Stepper';
 import useQuoteForm, { IQuoteForm } from './useQuoteForm';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import { colors } from '@styles/colors';
 export default function QuoteForm() {
   const initialState: IQuoteForm = {
     services: [],
@@ -21,11 +23,11 @@ export default function QuoteForm() {
     email: '',
     phone: '',
   };
-  const { formState, handleChange, handleSubmit, toggleChildService } =
+  const { formState, handleChange, handleSubmit, isSuccess, isLoading, isError } =
     useQuoteForm(initialState);
   const labels = [
     'Choose your service(s)',
-    'Describe your project',
+    "What's on your mind?",
     'Tell us a little more about yourself',
   ];
   const { push, query } = useRouter();
@@ -64,7 +66,6 @@ export default function QuoteForm() {
           <QuoteStepTwo
             formState={formState}
             handleChange={handleChange}
-            toggleChildService={toggleChildService}
           />
         );
       case step === 3:
@@ -80,6 +81,24 @@ export default function QuoteForm() {
         return null;
     }
   };
+  if (isError)
+    return (
+      <Stack justifyContent="center" alignItems="center" spacing={4}>
+        <ReportProblemIcon sx={{color: colors.error, fontSize: 64}} />
+        <Typography fontWeight={700}>
+          Oops! Something went wrong, please try again later
+        </Typography>
+      </Stack>
+    );
+  if (isSuccess)
+    return (
+      <Stack justifyContent="center" alignItems="center" spacing={4}>
+        <CheckCircleIcon sx={{color: colors.success, fontSize: 64}}  />
+        <Typography fontWeight={700}>
+          Thanks for reaching out, We will get back to you soon
+        </Typography>
+      </Stack>
+    );
   return (
     <Stack
       width="100%"
@@ -124,6 +143,7 @@ export default function QuoteForm() {
           disabled={isDisabled()}
           onClick={Number(step) < 3 ? handleNext : handleSubmit}
           label={Number(step) < 3 ? 'Continue' : 'Submit'}
+          loading={isLoading}
         />
       </Stack>
     </Stack>

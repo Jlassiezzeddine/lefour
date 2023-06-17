@@ -4,10 +4,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { getCancellationPolicies } from 'src/common/queries/CancellationPolicies';
+import { useCancellationPolicies } from 'src/common/hooks/api/cancellationPolicy';
 
 export default function CancellationTableOfContent() {
-  const cancellationPolicies = getCancellationPolicies();
+  const cancellationPolicies = useCancellationPolicies();
   return (
     <List
       dense
@@ -26,7 +26,7 @@ export default function CancellationTableOfContent() {
         Table Of Contents
       </Typography>
       <Spacer size={2} />
-      {cancellationPolicies.map((item, index) => (
+      {cancellationPolicies?.map((item, index) => (
         <ListItem key={item.slug}>
           <Link
             label={item.slug}

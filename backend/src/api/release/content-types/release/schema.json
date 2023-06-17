@@ -26,7 +26,7 @@
       "component": "artist.artist",
       "required": true
     },
-    "channel": {
+    "channels": {
       "displayName": "Channels",
       "type": "component",
       "repeatable": true,
@@ -44,6 +44,32 @@
       "repeatable": false,
       "component": "release-date.release-date",
       "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "preview": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

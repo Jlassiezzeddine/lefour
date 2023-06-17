@@ -12,6 +12,16 @@ interface IProps {
 const Layout = ({ children, title, subtitle }: IProps) => {
   return (
     <>
+    {/* <Box sx={{
+      position: 'fixed',
+      pointerEvents: 'none',
+      top: 0,
+      left: 0,
+      zIndex: 2,
+      height: "100%",
+      width:'100%',
+      border: `16px solid ${colors.light}`
+    }} /> */}
       <PageTransition />
       <Navigation />
       <PageHeader title={title} subtitle={subtitle} />

@@ -2,13 +2,13 @@ import Spacer from '@components/shared/Atoms/Spacer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { getCancellationPolicies } from 'src/common/queries/CancellationPolicies';
+import { useCancellationPolicies } from 'src/common/hooks/api/cancellationPolicy';
 
 export default function CancellationContent() {
-  const cancellationPolicies = getCancellationPolicies();
+  const cancellationPolicies = useCancellationPolicies();
   return (
     <Stack spacing={4}>
-      {cancellationPolicies.map((item, index) => (
+      {cancellationPolicies?.map((item, index) => (
         <Stack key={item.slug} id={item.slug}>
           <Typography fontSize={18} fontWeight={700} lineHeight={1}>
             {index + 1}

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "service-category",
     "pluralName": "service-categories",
-    "displayName": "ServiceCategory"
+    "displayName": "ServiceCategory",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -30,6 +31,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::service.service"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

@@ -54,9 +54,7 @@ const Navigation = () => {
   const { navigation } = useLinksMap();
   const showResponsiveNavigationItems =
     router.asPath === '/' && !isScrolledDown && !isMenuOpen;
-  useEffect(() => {
-    console.log('navigation', navigation);
-  }, [navigation]);
+
   const renderNavigation = (navigation: ILink[]) => {
     if (showResponsiveNavigationItems) {
       return navigation.map((item) =>

@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 import { SxProps, Theme } from '@mui/material/styles';
 import { boxShadow } from '@styles/boxShadow';
 import { colors } from '@styles/colors';
-import { getContactInfo } from 'src/common/queries/Globals';
+import { useContact } from 'src/common/hooks/api/contact';
 
 export default function FaqContact() {
-  const { phone, email } = getContactInfo();
+  const { phone, email } = useContact();
   const contactStyle: SxProps<Theme> = {
     border: `1px solid transparent`,
     borderRadius: 2,
@@ -38,50 +38,52 @@ export default function FaqContact() {
         contact us. We will answer to you shortly!
       </Typography>
       <Spacer size={6} />
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Link path={`tel:${phone}`} label={phone} sx={contactStyle}>
-            <Stack alignItems="center">
-              <PhoneInTalkIcon fontSize="large" />
-              <Spacer size={2} />
-              <Typography fontSize={18} fontWeight={600}>
-                {phone}
-              </Typography>
-              <Spacer size={1} />
-              <Typography
-                fontSize={16}
-                fontWeight={500}
-                align="center"
-                maxWidth={'640px'}
-                color={colors.grey}
-              >
-                We are always happy to help.
-              </Typography>
-            </Stack>
-          </Link>
+      {email && phone && (
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Link path={`tel:${phone}`} label={phone} sx={contactStyle}>
+              <Stack alignItems="center">
+                <PhoneInTalkIcon fontSize="large" />
+                <Spacer size={2} />
+                <Typography fontSize={18} fontWeight={600}>
+                  {phone}
+                </Typography>
+                <Spacer size={1} />
+                <Typography
+                  fontSize={16}
+                  fontWeight={500}
+                  align="center"
+                  maxWidth={'640px'}
+                  color={colors.grey}
+                >
+                  We are always happy to help.
+                </Typography>
+              </Stack>
+            </Link>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Link path={`mailto:${email}`} label={email} sx={contactStyle}>
+              <Stack alignItems="center">
+                <MailOutlineIcon fontSize="large" />
+                <Spacer size={2} />
+                <Typography fontSize={18} fontWeight={600}>
+                  {email}
+                </Typography>
+                <Spacer size={1} />
+                <Typography
+                  fontSize={16}
+                  fontWeight={500}
+                  align="center"
+                  maxWidth={'640px'}
+                  color={colors.grey}
+                >
+                  The best way to get answer faster;
+                </Typography>
+              </Stack>
+            </Link>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Link path={`mailto:${email}`} label={email} sx={contactStyle}>
-            <Stack alignItems="center">
-              <MailOutlineIcon fontSize="large" />
-              <Spacer size={2} />
-              <Typography fontSize={18} fontWeight={600}>
-                {email}
-              </Typography>
-              <Spacer size={1} />
-              <Typography
-                fontSize={16}
-                fontWeight={500}
-                align="center"
-                maxWidth={'640px'}
-                color={colors.grey}
-              >
-                The best way to get answer faster;
-              </Typography>
-            </Stack>
-          </Link>
-        </Grid>
-      </Grid>
+      )}
     </Stack>
   );
 }

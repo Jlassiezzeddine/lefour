@@ -8,11 +8,11 @@ import Spacer from '@components/shared/Atoms/Spacer';
 import Box from '@mui/material/Box';
 import { colors } from '@styles/colors';
 import useLinksMap from 'src/common/hooks/useLinks';
-import { getContactInfo } from 'src/common/queries/Globals';
+import { useContact } from 'src/common/hooks/api/contact';
 
 const FooterMiddle = () => {
   const navigationLinks = useLinksMap();
-  const { address, email, gMapLocation, phone } = getContactInfo();
+  const { address, email, googleMapsLocation, phone } = useContact();
   return (
     <Box>
       <Spacer size={4} />
@@ -71,25 +71,25 @@ const FooterMiddle = () => {
           </Typography>
           <Spacer size={2} />
           <Stack alignItems="right" spacing={1}>
-            <Link
+            {googleMapsLocation && address && <Link
               fontSize={14}
               fontWeight={500}
-              path={gMapLocation}
+              path={googleMapsLocation}
               label={address}
               external
-            />
-            <Link
+            />}
+            {phone && <Link
               fontSize={14}
               fontWeight={500}
               path={`tel:${phone}`}
               label={phone}
-            />
-            <Link
+            />}
+            {email && <Link
               fontSize={14}
               fontWeight={500}
               path={`mailto:${email}`}
               label={email}
-            />
+            />}
           </Stack>
           <Spacer size={2} />
         </Grid>

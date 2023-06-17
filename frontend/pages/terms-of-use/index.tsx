@@ -1,6 +1,5 @@
 import Layout from '@components/Layout';
 import Spacer from '@components/shared/Atoms/Spacer';
-import PageHeader from '@components/shared/Molecules/PageHeader';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import type { NextPage } from 'next';
@@ -19,8 +18,6 @@ const TermsOfUse: NextPage = () => {
       <Layout title="Terms Of Use">
         <Container>
           <Spacer size={8} />
-          <PageHeader title={'Terms Of Use'} subtitle={''} />
-          <Spacer size={16} divider />
           <Grid container>
             <Grid item xs={12} md={8} order={{ xs: 2, md: 1 }}>
               <TermsOfUseContent />
@@ -39,7 +36,6 @@ const TermsOfUse: NextPage = () => {
             </Grid>
           </Grid>
           <Spacer size={8} />
-          <Spacer size={8} divider />
         </Container>
       </Layout>
     </>

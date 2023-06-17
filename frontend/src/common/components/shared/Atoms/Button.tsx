@@ -1,5 +1,5 @@
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
-import { Link } from '@mui/material';
+import { CircularProgress, Link } from '@mui/material';
 import MUIButton from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
 import { darken } from '@mui/material/styles';
@@ -16,6 +16,7 @@ interface IProps {
   href?: string;
   dark?: boolean;
   external?: boolean;
+  loading?: boolean;
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -29,6 +30,7 @@ export default function Button({
   fullWidth = false,
   dark = false,
   external = false,
+  loading = false,
 }: IProps) {
   const getVariationStyle: () => SxProps<Theme> = () => {
     switch (true) {
@@ -125,8 +127,10 @@ export default function Button({
       sx={buttonStyle}
       disableRipple={variant === 'tertiary'}
     >
-      {label}
-      {variant === 'tertiary' && <ArrowRightAltIcon />}
+      {loading ? <CircularProgress color="inherit"  size={16}/> : <>
+        {label}
+        {variant === 'tertiary' && <ArrowRightAltIcon />}
+      </>}
     </ButtonBase>
   );
 }

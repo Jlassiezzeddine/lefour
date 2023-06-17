@@ -1,8 +1,18 @@
 import { ChangeEvent, useState } from 'react';
+import { usePostMessage } from 'src/common/hooks/api/message';
+import { IMessage } from 'src/common/types/Message';
 
-export default function useContactForm<T>(initialState: T) {
-  const [formState, setFormState] = useState<T>(initialState);
+const initialState: IMessage = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  message: '',
+};
 
+export default function useContactForm() {
+  const [formState, setFormState] = useState<IMessage>(initialState);
+  const { mutate, isLoading, isSuccess, isError, isIdle } = usePostMessage();
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -11,14 +21,17 @@ export default function useContactForm<T>(initialState: T) {
   };
 
   const handleSubmit = async () => {
-    try {
-      setFormState(initialState);
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+    mutate(formState as IMessage);
     //Todo : Add a toast or button animation for successful submit
   };
 
-  return { formState, handleChange, handleSubmit };
+  return {
+    formState,
+    handleChange,
+    handleSubmit,
+    isLoading,
+    isSuccess,
+    isError,
+    isIdle,
+  };
 }

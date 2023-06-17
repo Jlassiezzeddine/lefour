@@ -4,10 +4,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { getPrivacyPolicies } from 'src/common/queries/PrivacyPolicies';
+import { usePrivacyPolicies } from 'src/common/hooks/api/privacyPolicy';
 
 export default function PrivacyTableOfContent() {
-  const privacyPolicies = getPrivacyPolicies();
+  const privacyPolicies = usePrivacyPolicies();
   return (
     <List
       dense
@@ -26,7 +26,7 @@ export default function PrivacyTableOfContent() {
         Table Of Contents
       </Typography>
       <Spacer size={2} />
-      {privacyPolicies.map((item, index) => (
+      {privacyPolicies?.map((item, index) => (
         <ListItem key={item.slug}>
           <Link
             label={item.slug}

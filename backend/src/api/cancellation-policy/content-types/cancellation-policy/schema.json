@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cancellation_policies",
+  "info": {
+    "singularName": "cancellation-policy",
+    "pluralName": "cancellation-policies",
+    "displayName": "CancellationPolicy"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}
