@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { colors } from '@styles/colors';
-import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { useFrequentlyAskedQuestions } from 'src/common/hooks/api/faq';
 import { FAQContext } from 'src/common/types/FAQ';
 interface IProps {
