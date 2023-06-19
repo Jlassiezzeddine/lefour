@@ -88,7 +88,7 @@ const Hero = () => {
       return () => clearInterval(interval);
     }
   }, [heroList]);
-  if (!heroList) return <div>no hero</div>;
+  if (!heroList) return null;
   return (
     <Box position="relative" overflow="hidden" sx={heroStyle}>
       {heroList && heroList[slide] && renderBackground(heroList[slide])}
