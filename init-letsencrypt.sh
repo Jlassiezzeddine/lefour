@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! [ -x "$(command -v docker compose version)" ]; then
+  echo 'Error: docker compose is not installed.' >&2
+  exit 1
+fi
+
 domains=(lefourstudio.com www.lefourstudio.com)
 rsa_key_size=4096
 data_path="./data/certbot"
