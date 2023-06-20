@@ -3,7 +3,6 @@ import Link from '@components/shared/Atoms/Link';
 import Spacer from '@components/shared/Atoms/Spacer';
 import Section from '@components/shared/Section';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { boxShadow } from '@styles/boxShadow';
@@ -14,58 +13,24 @@ import { colors } from '../../styles/colors';
 import { bleedingBackground } from '@styles/bleedingBackground';
 
 interface IProps {
-  dark?: boolean
+  dark?: boolean;
 }
-export default function ServicesSection({dark = false}: IProps) {
+export default function ServicesSection({ dark = false }: IProps) {
   const services = useLinksMap().navigation.find((el) => el.children)?.children;
   const boxRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Section>
-      <Box sx={{  color: dark ? colors.light : colors.dark, ...bleedingBackground(dark ? colors.dark : colors.light) }}>
-        <Spacer size={16} />
-        <Box
-              sx={{
-                height: '2px',
-                width: '64px',
-                backgroundColor: colors.dark,
-                marginBottom: 2,
-              }}
-            />
-        <Box
-          sx={{
-            paddingBottom: 8,
-          }}
-        >
-          <Typography textTransform="uppercase" fontSize={22} fontWeight={700}>
-            Our Services
-          </Typography>
-          <Spacer size={1} />
-          <Grid container spacing={2} alignItems="start">
-            <Grid item color={colors.dark} xs={12} md={4}>
-              <Typography
-                maxWidth="15ch"
-                textTransform="uppercase"
-                fontSize={40}
-                fontWeight={900}
-                lineHeight={1.1}
-                color={dark ? colors.light : colors.dark}
-              >
-                {`What Services We're Offering`}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <Spacer size={0.5} />
-
-              <Typography fontSize={18} fontWeight={500}>
-                Our music studio offers a wide range of services including audio
-                production, recording, mixing, mastering, video shooting, video
-                editing, and event services such as live sound, lighting, and DJ
-                services.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Box>
+    <Section
+      title="WHAT SERVICES WE'RE OFFERING"
+      slogan="OUR SERVICES"
+      description="Our music studio offers a wide range of services including audio production, recording, mixing, mastering, video shooting, video editing, and event services such as live sound, lighting, and DJ services."
+    >
+      <Box
+        sx={{
+          color: dark ? colors.light : colors.dark,
+          ...bleedingBackground(dark ? colors.dark : colors.light),
+        }}
+      >
         <Stack
           direction={{ xs: 'column', md: 'row' }}
           spacing={2}
@@ -193,7 +158,7 @@ export default function ServicesSection({dark = false}: IProps) {
                   <Typography
                     className="heading"
                     component="h4"
-                    fontSize={{ xs: 32}}
+                    fontSize={{ xs: 32 }}
                     fontWeight={700}
                     lineHeight={1.2}
                   >
@@ -217,7 +182,6 @@ export default function ServicesSection({dark = false}: IProps) {
             </Box>
           ))}
         </Stack>
-        <Spacer size={16} />
       </Box>
     </Section>
   );

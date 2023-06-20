@@ -42,6 +42,17 @@
         "videos",
         "audios"
       ]
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::reservation.reservation",
+      "mappedBy": "service_categories"
+    },
+    "hidden": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

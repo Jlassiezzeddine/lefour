@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box';
-import { IService } from 'src/common/types/Service';
 import TextInput from '../../shared/Atoms/Form/TextInput';
 import { IQuoteForm } from './useQuoteForm';
+import { IServiceCategories } from 'src/common/types/ServiceCategories';
 
 interface IProps {
   formState: IQuoteForm;
   // eslint-disable-next-line no-unused-vars
-  handleChange: (name: string, value: string | IService[]) => void;
+  handleChange: (name: string, value: string | IServiceCategories[]) => void;
 }
 
 export default function QuoteStepTwo({ formState, handleChange }: IProps) {

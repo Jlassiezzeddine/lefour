@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { usePostReservation } from 'src/common/hooks/api/reservation';
-import { IService } from 'src/common/types/Service';
+import { IServiceCategories } from 'src/common/types/ServiceCategories';
 export interface IQuoteForm {
-  services: IService[];
+  services: IServiceCategories[];
   description: string;
   firstName: string;
   lastName: string;
@@ -16,14 +16,19 @@ export default function useQuoteForm(initialState: IQuoteForm) {
   const { mutate, isLoading, isError, isIdle, isSuccess } =
     usePostReservation();
   const handleChange = useCallback(
-    (name: string, value: string | IService[]) => {
+    (name: string, value: string | IServiceCategories[]) => {
       setFormState({ ...formState, [name]: value });
     },
     [formState]
   );
 
   const handleSubmit = async () => {
-    mutate(formState);
+    const payload = {
+      ...formState,
+      service_categories: { connect: formState.services.map((e) => e.id) },
+    };
+    console.log('payload', payload);
+    mutate(payload);
     //Todo : Add a toast or button animation for successful submit
   };
 

@@ -11,7 +11,7 @@ type ReleasesResponse = IStrapiResponse<{
   slug: string;
   cover: IMediaRaw;
   preview: IMediaRaw;
-  artist: Artist;
+  artist: Artist[];
   channels: Channel[];
   releaseDate: ReleaseDate;
 }>;

@@ -2,6 +2,7 @@ import { IMedia, IMediaRaw } from "./Media";
 import { IService } from "./Service";
 
 export interface IServiceCategories  {
+  id: number;
   name: string;
   slug: string;
   description: string;
@@ -9,4 +10,5 @@ export interface IServiceCategories  {
   pricing?: string;
   image?: IMedia | IMediaRaw;
   services?: IService[];
+  hidden: boolean
 }

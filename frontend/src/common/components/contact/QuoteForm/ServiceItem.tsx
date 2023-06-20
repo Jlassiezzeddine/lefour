@@ -2,7 +2,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { IService } from 'src/common/types/Service';
 import shortText from 'src/common/utils/shortText';
 import { colors } from '../../../styles/colors';
 import { renderServiceIcon } from '../../shared/Molecules/ServiceCard';
@@ -12,7 +11,7 @@ interface IProps {
   service: IServiceCategories;
   selected: IServiceCategories[];
   // eslint-disable-next-line no-unused-vars
-  handleSelect: (service: IService) => void;
+  handleSelect: (service: IServiceCategories) => void;
 }
 export default function ServiceItem({
   service,
@@ -57,8 +56,8 @@ export default function ServiceItem({
             color={colors.grey}
             sx={{ display: { xs: 'none', md: 'block' }, ...shortText('40ch') }}
           >
-            {services
-              ? services.map((el) => el.name).join(', ')
+            {slug !== 'something-else' 
+              ? services?.map((el) => el.name).join(', ')
               : 'We are here to help! '}
           </Typography>
         </Stack>

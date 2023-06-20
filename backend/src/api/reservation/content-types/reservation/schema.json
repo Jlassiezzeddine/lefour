@@ -30,6 +30,12 @@
     },
     "phone": {
       "type": "string"
+    },
+    "service_categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service-category.service-category",
+      "inversedBy": "reservations"
     }
   }
 }

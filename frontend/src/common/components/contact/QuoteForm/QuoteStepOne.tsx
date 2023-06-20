@@ -1,21 +1,21 @@
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import { useState } from 'react';
-import { IService } from 'src/common/types/Service';
 import ServiceItem from './ServiceItem';
 import { IQuoteForm } from './useQuoteForm';
-import { useService } from 'src/common/hooks/api/service';
+import { useServiceCategories } from 'src/common/hooks/api/serviceCategories';
+import { IServiceCategories } from 'src/common/types/ServiceCategories';
 
 interface IProps {
   formState: IQuoteForm;
   // eslint-disable-next-line no-unused-vars
-  handleChange: (name: string, value: string | IService[]) => void;
+  handleChange: (name: string, value: string | IServiceCategories[]) => void;
 }
 export default function QuoteStepOne({ formState, handleChange }: IProps) {
-  const services = useService();
-  const [selected, setSelected] = useState<IService[]>(formState.services);
-  const handleSelect = (service: IService) => {
-    let newSelected: IService[];
+  const services = useServiceCategories(true);
+  const [selected, setSelected] = useState<IServiceCategories[]>(formState.services);
+  const handleSelect = (service: IServiceCategories) => {
+    let newSelected: IServiceCategories[];
     if (selected.some((el) => el.slug === service.slug)) {
       newSelected = selected.filter((el) => el.slug !== service.slug);
     } else {
@@ -36,7 +36,7 @@ export default function QuoteStepOne({ formState, handleChange }: IProps) {
             />
           </Grid>
         ))}
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <ServiceItem
             service={{
               name: 'Something else',
@@ -47,7 +47,7 @@ export default function QuoteStepOne({ formState, handleChange }: IProps) {
             selected={selected}
             handleSelect={handleSelect}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Stack>
   );

@@ -1,23 +1,32 @@
 import _ from "lodash";
-import messageEmailTemplate from "../../../../emailTemplates/messageEmailTemplate";
+import messageToSender from "../../../../emailTemplates/messageToSender";
+import messageToMaster from "../../../../emailTemplates/messageToMaster";
 
 export default {
   async afterCreate(event) {
     const { result: message } = event;
-    console.log("message", message);
 
-    const emailTemplate = {
+    const emailTemplateToSender = {
+      subject: "Thanks for reaching out!",
+      text: `
+        Depending on the complexity of your question or request, it may take a short while for us to gather the necessary information or consult with the appropriate individuals to provide you with a comprehensive response.
+        `,
+      html: messageToSender,
+    };
+    const emailTemplateToMaster = {
       subject:
         "Message from : <%= message.firstName %> <%= message.lastName %>",
       text: `
-        Thank you for reaching out to us through our website form.
+        New message via lefourstudio.com
+        Full Name : <%= message.firstName %> <%= message.lastName %>
+        Phone : <%= message.phone %> 
+        Email : <%= message.email %> 
 
-        While we process your inquiry, I kindly ask for your patience and understanding. Depending on the complexity of your question or request, it may take a short while for us to gather the necessary information or consult with the appropriate individuals to provide you with a comprehensive response.
+        -
         
-        Warm regards,
-        Hatem Gabsi, CEO Le Four Studio
+        Message : <%= message.message %> 
         `,
-      html: messageEmailTemplate,
+      html: messageToMaster,
     };
     try {
       await strapi.plugins["email"].services.email.sendTemplatedEmail(
@@ -25,7 +34,7 @@ export default {
           to: "lefourmaster@gmail.com",
           // from: is not specified, the defaultFrom is used.
         },
-        emailTemplate,
+        emailTemplateToMaster,
         {
           message: _.pick(message, [
             "phone",
@@ -42,7 +51,7 @@ export default {
           from: "Le Four Studio",
           subject: "Re: Inquiry via lefourstudio.com",
         },
-        emailTemplate,
+        emailTemplateToSender,
         {
           message: _.pick(message, [
             "phone",

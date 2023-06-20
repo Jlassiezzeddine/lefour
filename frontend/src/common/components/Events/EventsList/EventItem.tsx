@@ -17,7 +17,7 @@ interface IProps {
 export function EventItem({ event, index }: IProps) {
   const {
     id,
-    slug,
+    // slug,
     label,
     description,
     startDate,
@@ -110,12 +110,12 @@ export function EventItem({ event, index }: IProps) {
         </Grid>
         <Grid item xs={12} md={3} display="flex" justifyContent="end">
           <Stack direction="row" width="100%" spacing={2}>
-            <Button
+            {/* <Button
               href={`/events/${slug}`}
               fullWidth
               label={'Details'}
               variant="secondary"
-            />
+            /> */}
             <Button
               href={ticketsExternal}
               external

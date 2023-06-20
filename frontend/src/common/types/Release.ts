@@ -28,7 +28,7 @@ export interface IRelease {
   genre: string;
   cover: IMedia;
   preview: IMedia;
-  artist: Artist;
+  artist: Artist[];
   channels: Channel[];
   releaseDate: ReleaseDate;
 }

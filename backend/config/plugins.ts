@@ -14,9 +14,9 @@ export default ({ env }) => ({
       },
     },
     settings: {
-      defaultFrom: "Le Four Studio <lefourmaster@gmail.com>",
-      defaultReplyTo: "Le Four Studio <lefourmaster@gmail.com>",
-      testAddress: "Le Four Studio <lefourmaster@gmail.com>",
+      defaultFrom: env("DEFAULT_FROM"),
+      defaultReplyTo: env("DEFAULT_REPLY_TO"),
+      testAddress: env("DEFAULT_TEST_EMAIL"),
     },
   },
   upload: {

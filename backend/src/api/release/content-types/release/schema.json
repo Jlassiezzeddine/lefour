@@ -22,7 +22,7 @@
     "artist": {
       "displayName": "Artist",
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "artist.artist",
       "required": true
     },
@@ -62,14 +62,15 @@
       "required": true
     },
     "preview": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

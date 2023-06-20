@@ -10,6 +10,7 @@
     "prepare": "husky install",
     "build": "cd frontend && yarn run build"
 
+
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",

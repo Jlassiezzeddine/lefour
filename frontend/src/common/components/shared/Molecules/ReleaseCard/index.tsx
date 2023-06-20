@@ -108,7 +108,7 @@ function ReleaseCard({ release }: IProps) {
             {release.album && <Typography>Album: {release.album}</Typography>}
 
             <Stack direction="row" alignItems="center" spacing={2}>
-              <Typography>Artist: {release.artist.name}</Typography>
+              <Typography>Artist: {release.artist[0].name} {release.artist.length > 1 && `feat. ${release.artist.slice(1).map(e => e.name).join(', ')}`}</Typography>
             </Stack>
           </Box>
           <Stack spacing={1} zIndex={2}>

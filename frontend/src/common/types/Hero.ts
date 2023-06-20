@@ -1,4 +1,4 @@
-import { IMedia, IMediaRaw } from './Media';
+import { IMedia } from './Media';
 export type CTA = {
   id: number;
   label: string;
@@ -9,7 +9,8 @@ export interface IHeroItem {
   description: string;
   location: string | null;
   locationURL: string | null;
-  background: IMedia | IMediaRaw;
+  background: IMedia ;
+  backgroundMobile: IMedia ;
   cta: CTA[];
 }
 export interface IHero {

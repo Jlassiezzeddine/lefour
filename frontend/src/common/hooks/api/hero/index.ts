@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { getHero } from 'src/common/queries/Hero';
-import { IMediaRaw } from 'src/common/types/Media';
 import { getMedia } from 'src/common/utils/getMedia';
 
 export const useHero = () => {
@@ -10,7 +9,8 @@ export const useHero = () => {
     description: el.description,
     location: el.location,
     locationURL:el.locationURL,
-    background: getMedia(el.background as IMediaRaw),
+    background: getMedia(el.background),
+    backgroundMobile: getMedia(el.backgroundMobile),
     cta: el.cta
   }))
 };

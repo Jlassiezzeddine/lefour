@@ -42,7 +42,7 @@ export const renderServiceIcon = (icon?: string) => {
       return <EventIcon />;
     case icon === 'live-performances':
       return <SpeakerOutlinedIcon />;
-    case icon === 'other':
+    case icon === 'something-else':
       return <AutoAwesomeOutlinedIcon />;
 
     default:
