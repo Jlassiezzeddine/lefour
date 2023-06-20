@@ -45,7 +45,7 @@ export default function useLinksMap(): {
         label: 'Services',
         slug: 'services',
         path: '/services',
-        children: services ? getServicesRouting(services) : [],
+        children: services ? getServicesRouting(services as IServiceCategories[]) : [],
       },
       
       {
