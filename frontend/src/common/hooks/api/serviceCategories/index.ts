@@ -17,6 +17,7 @@ export const useServiceCategories = ({slug, all= false}: {all: boolean , slug?: 
       id: item.id,
       name: item.attributes.name,
       slug: item.attributes.slug,
+      slogan: item.attributes.slogan,
       description: item.attributes.description,
       content: item.attributes.content,
       image: getMedia(item.attributes.image),

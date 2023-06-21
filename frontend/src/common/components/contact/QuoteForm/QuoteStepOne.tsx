@@ -12,7 +12,7 @@ interface IProps {
   handleChange: (name: string, value: string | IServiceCategories[]) => void;
 }
 export default function QuoteStepOne({ formState, handleChange }: IProps) {
-  const services = useServiceCategories(true);
+  const services = useServiceCategories({all:true});
   const [selected, setSelected] = useState<IServiceCategories[]>(formState.services);
   const handleSelect = (service: IServiceCategories) => {
     let newSelected: IServiceCategories[];
