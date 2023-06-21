@@ -1,13 +1,13 @@
 import { ILink } from '../types/Link';
-import { useService } from './api/service';
 import { IServiceCategories } from '../types/ServiceCategories';
 import { IMedia } from '../types/Media';
+import { useServiceCategories } from './api/serviceCategories';
 
 export default function useLinksMap(): {
   navigation: ILink[];
   footer: ILink[];
 } {
-  const services = useService();
+  const services = useServiceCategories({ all: false });
   // eslint-disable-next-line no-unused-vars
   const getServicesRouting: (services: IServiceCategories[]) => ILink[] = (
     services: IServiceCategories[]
@@ -17,14 +17,14 @@ export default function useLinksMap(): {
       slug: item.slug,
       path: `/services/${item.slug}`,
       description: item.description,
-      image:item.image as IMedia,
+      image: item.image as IMedia,
       children: item.services?.map((child) => ({
         label: child.name,
         slug: child.slug,
         path: `/services/${item.slug}/${child.slug}`,
         icon: child.slug,
         description: child.description,
-        image:child.image as IMedia,
+        image: child.image as IMedia,
       })),
     }));
   // Export the getServerSideProps function with GetServerSideProps type
@@ -45,9 +45,11 @@ export default function useLinksMap(): {
         label: 'Services',
         slug: 'services',
         path: '/services',
-        children: services ? getServicesRouting(services as IServiceCategories[]) : [],
+        children: services
+          ? getServicesRouting(services as IServiceCategories[])
+          : [],
       },
-      
+
       {
         label: 'Releases',
         slug: 'releases',

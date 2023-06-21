@@ -1,25 +1,26 @@
 import axios from 'axios';
-import { IService } from 'src/common/types/Service';
+import { IMediaRaw } from 'src/common/types/Media';
 import { IStrapiResponse } from 'src/common/types/StrapiResponse';
-
-type ServiceCategoriesResponse = IStrapiResponse<{
+interface IServiceResponse {
+  id: number;
   name: string;
   slug: string;
+  slogan: string;
   description: string;
   content: string;
   pricing?: string;
-  image: any;
-  services?: IStrapiResponse<IService>;
-}>;
+  image: IMediaRaw;
+}
+
 // eslint-disable-next-line no-unused-vars
 export const getServices: (
   // eslint-disable-next-line no-unused-vars
   slug?: string
-) => Promise<ServiceCategoriesResponse> = async (slug?: string) => {
+) => Promise<IStrapiResponse<IServiceResponse>> = async (slug?: string) => {
   const { data } = await axios.get(
-    `/strapi/api/service-categories?filters[hidden][$eq]=false${
-      slug ? 'filters[slug][$eq]=' + slug : ''
-    }&populate=services&populate=image&populate=services.image&sort=id`
+    `/strapi/api/services?${
+      slug ? 'filters[slug][$eq]=' + slug + '&' : ''
+    }populate=image&sort=id`
   );
   return data;
 };

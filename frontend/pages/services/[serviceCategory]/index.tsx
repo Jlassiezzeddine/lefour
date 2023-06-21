@@ -4,12 +4,12 @@ import SeoHeader from '@components/shared/SeoHeader';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import Spacer from '@components/shared/Atoms/Spacer';
 import { useRouter } from 'next/router';
-import { useService } from 'src/common/hooks/api/service';
 import ServiceCard from '@components/shared/Molecules/ServiceCard';
+import { useServiceCategories } from 'src/common/hooks/api/serviceCategories';
 
 const Service = () => {
   const { query } = useRouter();
-  const response = useService(query.serviceCategory as string);
+  const response = useServiceCategories({slug: query.serviceCategory as string, all: true});
 
   if (!response) return null;
   const { name, description, image, services } = response[0];
@@ -18,6 +18,7 @@ const Service = () => {
       <SeoHeader />
       <Layout title={name}>
         <Container>
+          <Spacer size={8} />
           <Box
             sx={{
               width: '100%',
@@ -37,7 +38,7 @@ const Service = () => {
           <Spacer size={6} />
           <Typography fontWeight={700}>Description</Typography>
           <Spacer size={2} />
-          <Typography>{description}</Typography>
+          <Typography fontSize={18}>{description}</Typography>
           <Spacer size={6} />
           <Grid container spacing={4}>
             {services &&

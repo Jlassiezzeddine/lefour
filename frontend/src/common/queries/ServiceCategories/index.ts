@@ -1,7 +1,15 @@
 import axios from 'axios';
-import { IService } from 'src/common/types/Service';
+import { IMediaRaw } from 'src/common/types/Media';
 import { IStrapiResponse } from 'src/common/types/StrapiResponse';
-
+interface IServiceResponse {
+  name: string;
+  slug: string;
+  slogan: string;
+  description: string;
+  content: string;
+  pricing?: string;
+  image: IMediaRaw;
+}
 type ServiceCategoriesResponse = IStrapiResponse<{
   id: number;
   name: string;
@@ -10,17 +18,24 @@ type ServiceCategoriesResponse = IStrapiResponse<{
   content: string;
   pricing?: string;
   image: any;
-  services?: IStrapiResponse<IService>;
+  services?: IStrapiResponse<IServiceResponse>;
   hidden: boolean;
 }>;
 // eslint-disable-next-line no-unused-vars
-export const getServiceCategories: (
+export const getServiceCategories: ({
   // eslint-disable-next-line no-unused-vars
-  all?: boolean
-) => Promise<ServiceCategoriesResponse> = async (all = false) => {
+  slug,
+  // eslint-disable-next-line no-unused-vars
+  all,
+}: {
+  slug?: string;
+  all?: boolean;
+}) => Promise<ServiceCategoriesResponse> = async ({ slug, all = false }) => {
   const { data } = await axios.get(
     `/strapi/api/service-categories?${
-      all ? '' : 'filters[hidden][$eq]=false'
+      slug ? 'filters[slug][$eq]=' + slug : ''
+    }${
+      all ? '' : '&filters[hidden][$eq]=false'
     }&populate=services&populate=image&populate=services.image&sort=id`
   );
   return data;
