@@ -19,7 +19,7 @@ function VideoComponent({ url }: IProps) {
   }, [url]);
 
   return (
-    <video ref={videoRef} autoPlay muted loop style={{ height: '100%'}}>
+    <video ref={videoRef} playsInline autoPlay muted loop style={{ height: '100%'}}>
       <source src={url} />
     </video>
   );
