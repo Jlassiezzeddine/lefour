@@ -15,8 +15,8 @@ import Typography from '@mui/material/Typography';
 import { SxProps, Theme, lighten } from '@mui/material/styles';
 import { colors } from '@styles/colors';
 import { ILink } from 'src/common/types/Link';
-import Link from '../../Atoms/Link';
 import Spacer from '../../Atoms/Spacer';
+import { useRouter } from 'next/router';
 
 export const renderServiceIcon = (icon?: string) => {
   switch (true) {
@@ -55,6 +55,7 @@ interface IProps {
   dark?: boolean;
 }
 export default function ServiceCard({ service, dark = false }: IProps) {
+  const router = useRouter();
   const style: SxProps<Theme> = {
     border: `1px solid ${colors.lightGrey}`,
     borderRadius: 2,
@@ -97,10 +98,10 @@ export default function ServiceCard({ service, dark = false }: IProps) {
       },
     },
   };
+
   return (
-    <Link
-      label="Learn more"
-      path={service.path}
+    <Box
+      onClick={() => router.push(service.path)}
       sx={{
         borderRadius: 2,
         transition: 'all.3s ease',
@@ -138,6 +139,6 @@ export default function ServiceCard({ service, dark = false }: IProps) {
           <Button dark={dark} label="Learn more" variant="tertiary" />
         </Stack>
       </Stack>
-    </Link>
+    </Box>
   );
 }

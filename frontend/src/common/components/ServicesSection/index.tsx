@@ -1,5 +1,4 @@
 import Button from '@components/shared/Atoms/Button';
-import Link from '@components/shared/Atoms/Link';
 import Spacer from '@components/shared/Atoms/Spacer';
 import Section from '@components/shared/Section';
 import Box from '@mui/material/Box';
@@ -11,6 +10,7 @@ import useLinksMap from 'src/common/hooks/useLinks';
 import clampText from 'src/common/utils/clampText';
 import { colors } from '../../styles/colors';
 import { bleedingBackground } from '@styles/bleedingBackground';
+import { useRouter } from 'next/router';
 
 interface IProps {
   dark?: boolean;
@@ -18,7 +18,7 @@ interface IProps {
 export default function ServicesSection({ dark = false }: IProps) {
   const services = useLinksMap().navigation.find((el) => el.children)?.children;
   const boxRef = useRef<HTMLDivElement>(null);
-
+  const router = useRouter()
   return (
     <Section
       title="WHAT SERVICES WE'RE OFFERING"
@@ -54,9 +54,8 @@ export default function ServicesSection({ dark = false }: IProps) {
                 overflow: 'hidden',
               }}
             >
-              <Link
-                path={item.path}
-                label={'Services'}
+              <Box
+                onClick={() => router.push(item.path)}
                 sx={{
                   height: '100%',
                   width: '100%',
@@ -178,7 +177,7 @@ export default function ServicesSection({ dark = false }: IProps) {
                     <Button dark variant="tertiary" label="Learn More" />
                   </Box>
                 </Stack>
-              </Link>
+              </Box>
             </Box>
           ))}
         </Stack>
