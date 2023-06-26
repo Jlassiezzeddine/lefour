@@ -93,7 +93,15 @@ const Hero = () => {
       return () => clearInterval(interval);
     }
   }, [heroList]);
-  if (!heroList) return null;
+  if (!heroList)
+    return (
+      <Box
+        sx={{
+          minHeight: { xs: '100vh', md: '85vh' },
+          backgroundColor: colors.light,
+        }}
+      />
+    );
   return (
     <Box position="relative" overflow="hidden" sx={heroStyle}>
       {heroList && heroList[slide] && renderBackground(heroList[slide])}
