@@ -1,8 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from 'react';
 interface IProps {
-    url: string
+  url: string;
+  onLoadedData?: any;
 }
-function VideoComponent({ url }: IProps) {
+function VideoComponent({ url, onLoadedData }: IProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const previousUrl = useRef(url);
 
@@ -19,7 +20,15 @@ function VideoComponent({ url }: IProps) {
   }, [url]);
 
   return (
-    <video ref={videoRef} playsInline autoPlay muted loop style={{ height: '100%'}}>
+    <video
+      onLoadedData={onLoadedData}
+      ref={videoRef}
+      playsInline
+      autoPlay
+      muted
+      loop
+      style={{ height: '100%' }}
+    >
       <source src={url} />
     </video>
   );
