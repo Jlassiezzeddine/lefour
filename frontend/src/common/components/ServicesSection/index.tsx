@@ -60,6 +60,7 @@ export default function ServicesSection({ dark = false }: IProps) {
                   height: '100%',
                   width: '100%',
                   position: 'relative',
+                  cursor: 'pointer',
                   color: colors.light,
                   '& button': {
                     '& svg': {
